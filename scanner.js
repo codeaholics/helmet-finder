@@ -68,7 +68,7 @@ function loadHelmets(detailPages) {
 
     console.log('About to load', detailPages.length, 'helmets');
 
-    async.mapLimit(detailPages, 5, loadHelmetDetails, function(err, helmets) {
+    async.mapLimit(detailPages, 1, loadHelmetDetails, function(err, helmets) {
         if (err) throw err;
         console.log('Loaded details of', helmets.length, 'helmets');
         storeHelmets(helmets);
