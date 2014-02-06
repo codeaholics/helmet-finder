@@ -2,6 +2,7 @@ var util = require('util'),
     fs = require('fs'),
     async = require('async'),
     jsdom = require('jsdom'),
+    redis = require('redis'),
     changeCase = require('change-case');
 
 var jquery = fs.readFileSync('node_modules/jquery/dist/jquery.min.js', 'utf-8');
@@ -70,7 +71,7 @@ function loadHelmets(detailPages) {
     async.mapLimit(detailPages, 5, loadHelmetDetails, function(err, helmets) {
         if (err) throw err;
         console.log('Loaded details of', helmets.length, 'helmets');
-        console.log('For example:', helmets[0]);
+        storeHelmets(helmets);
     });
 
     function loadHelmetDetails(url, next) {
@@ -135,6 +136,38 @@ function loadHelmets(detailPages) {
     }
 }
 
+function storeHelmets(helmets) {
+    var r;
+
+    console.log('Connecting to Redis');
+
+    if (process.env.REDISCLOUD_URL) {
+        console.log('(Using RedisCloud URL', process.env.REDISCLOUD_URL, ')');
+
+        var url = require("url").parse(process.env.REDISCLOUD_URL);
+        r = redis.createClient(url.port, url.hostname, {
+            auth_pass: url.auth.split(':')[1]
+        });
+    } else {
+        r = redis.createClient();
+    }
+
+    r.on('error', function(err) {
+        console.log(err);
+    });
+
+    r.on('ready', function() {
+        console.log('Connected to Redis');
+
+        r.set('helmets', JSON.stringify(helmets));
+        r.quit();
+    });
+
+    r.on('end', function() {
+        console.log('Disconnected from Redis');
+    });
+}
+
 var mapDetails = {
     'make': simpleString,
     'model': simpleString,
@@ -180,3 +213,4 @@ function ul($, key, $details, helmet) {
         return $(this).text();
     }).get();
 }
+

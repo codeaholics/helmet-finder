@@ -7,7 +7,9 @@
     "jsdom": "~0.9.0",
     "async": "~0.2.10",
     "jquery": "~2.1.0",
-    "change-case": "~1.0.5"
+    "change-case": "~1.0.5",
+    "redis": "~0.10.0",
+    "hiredis": "~0.1.16"
   },
   "devDependencies": {},
   "scripts": {
