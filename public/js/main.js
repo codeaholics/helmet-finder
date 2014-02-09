@@ -4,7 +4,8 @@
         var helmets = JSON.parse(json);
 
         helmets.forEach(function(helmet, i) {
-            $('.footable>tbody').append('<tr data-index="' + i + '"><td>' + helmet.make + '</td><td>' + helmet.model + '</td><td>' + helmet.stars + '</td></tr>');
+            var sortValue = helmet.make.toLowerCase() + ' ' + helmet.model.replace(/[^A-Za-z\d\s]/, '', 'g').toLowerCase();
+            $('.footable>tbody').append('<tr data-sort-initial="true" data-index="' + i + '"><td data-value="' + sortValue + '">' + helmet.make + '</td><td>' + helmet.model + '</td><td>' + helmet.stars + '</td></tr>');
         });
 
         $('input[type="checkbox"]').on('change', function(e) {
