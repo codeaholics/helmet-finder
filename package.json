@@ -9,12 +9,23 @@
     "jquery": "~2.1.0",
     "change-case": "~1.0.5",
     "redis": "~0.10.0",
-    "hiredis": "~0.1.16"
+    "hiredis": "~0.1.16",
+    "express": "~3.4.8",
+    "bower": "~1.2.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Danny Yates",
-  "license": "Apache 2.0"
+  "license": "Apache 2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codeaholics/helmet-finder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codeaholics/helmet-finder/issues"
+  },
+  "homepage": "https://github.com/codeaholics/helmet-finder"
 }

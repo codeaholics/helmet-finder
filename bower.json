@@ -1,0 +1,21 @@
+{
+  "name": "helmet-finder",
+  "version": "0.0.1",
+  "homepage": "https://github.com/codeaholics/helmet-finder",
+  "authors": [
+    "Danny Yates <danny@codeaholics.org>"
+  ],
+  "license": "Apache 2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "footable": "f5ba5e2a23cf9b32cf3f407b2acd56be64f35ddd"
+  }
+}
