@@ -1,7 +1,17 @@
 body {
-  padding-top: 70px;
+    padding-top: 70px;
 }
 
 .pagination .footable-page-arrow.disabled {
     cursor: default !important;
+}
+
+/* Fix a bug where pagination items are hidden and the re-shown using jQuery
+   and jQ sticks a "display:list-item" directly on the element */
+.pagination>li[style*='list-item'] {
+    display: inline !important;
+}
+
+.pagination>.footable-page-arrow.disabled a {
+    cursor: default;
 }
